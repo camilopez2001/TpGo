@@ -7,6 +7,8 @@ En nuestro main_test corremos convertor y al terminar utilizamos lo que devuelve
 El test llega a un 75% 
 
 INTEGRANTES:
-Lopez, Camila
-Cesario Provenzano, Guillermo Tomas
+Lopez, Camila.
+
+Cesario Provenzano, Guillermo Tomas.
+
 Amici, Cristian
