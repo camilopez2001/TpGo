@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">tudai2021.com/main.go (75.0%)</option>
+				<option value="file0">tudai2021.com/main.go (89.1%)</option>
 				
 				</select>
 			</div>
@@ -76,22 +76,95 @@ import (
         "fmt"
         "tudai2021.com/model"
         "strconv"
-        
+        "errors"
 )
 
-func Convertor(l string) model.Result<span class="cov8" title="1">{
+
+
+func Convertor(l string) (model.Result,error)<span class="cov8" title="1">{
         r := model.NewResult()
-        r.Type = l[:2]
-        r.Value = l[4:]
-        x, _ := strconv.Atoi(l[2:4])
-        r.Length = x
-        return r
-}</span>
+        name := ""
+    value := ""
+    length := ""
+        tipo := ""
+
+    for i, pos := range l </span><span class="cov8" title="1">{
+        len := i
+        if len &lt; 2 </span><span class="cov8" title="1">{
+                        if number(string(pos)) == true</span><span class="cov8" title="1">{
+                                return r, errors.New("Uno de los 2 primeros caracteres es un numero")
+                        }</span>
+            <span class="cov8" title="1">name += string(pos)</span>
+        }
+        <span class="cov8" title="1">if len &gt;= 2 &amp;&amp; len &lt; 4 </span><span class="cov8" title="1">{
+                        if number(string(pos)) == false</span><span class="cov0" title="0">{
+                                return r, errors.New("el 3 o 4 caracter es una letra, debe ser un valor")
+                        }</span>
+            <span class="cov8" title="1">length += string(pos)</span>
+        }
+        <span class="cov8" title="1">if len &gt;= 4 </span><span class="cov8" title="1">{
+                        if(len == 4)</span><span class="cov8" title="1">{
+                                tipo = string(pos)
+                        }</span>
+            <span class="cov8" title="1">value += string(pos)</span>
+        }
+        <span class="cov8" title="1">len++</span>
+    }
+
+    <span class="cov8" title="1">length_int, _ := strconv.Atoi(length)
+
+        lon := 0
+        for i, _ := range value </span><span class="cov8" title="1">{
+        lon = i
+        lon++
+    }</span>
+        <span class="cov8" title="1">if(length_int != lon)</span><span class="cov8" title="1">{
+                return r, errors.New("no coinciden el largo con la cantidad")
+        }</span>
+
+
+        <span class="cov8" title="1">n := number(tipo)
+        for _, pos := range value </span><span class="cov8" title="1">{
+                if n</span><span class="cov8" title="1">{
+                        if number(string(pos)) == false </span><span class="cov8" title="1">{
+                                return r, errors.New("hay una letra")
+                        }</span>
+                } else<span class="cov8" title="1"> {
+                                if number(string(pos)) == true </span><span class="cov8" title="1">{
+                                        return r, errors.New("hay un numero")
+                                }</span>
+                        }
+                
+        }
+
+
+        <span class="cov8" title="1">r.Type = name
+        r.Value = value
+        r.Length = length_int
+        return r, nil</span>;
+}
+
+
+func number (n string) bool<span class="cov8" title="1">{
+        _, err := strconv.Atoi(n);
+        if err == nil</span><span class="cov8" title="1">{
+                        return true
+        }</span>else<span class="cov8" title="1">{
+                return false
+        }</span>
+} 
 
 func main() <span class="cov0" title="0">{
-        r := Convertor("TX02AB")
-        fmt.Println(r)
-}</span>
+
+        r, err:= Convertor("1N09ABC")
+        if(err != nil)</span><span class="cov0" title="0">{
+                fmt.Println(err)
+        }</span>else<span class="cov0" title="0">{
+                fmt.Println(r)
+        }</span> 
+        
+        
+}
 
 </pre>
 		

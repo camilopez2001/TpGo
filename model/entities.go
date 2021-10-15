@@ -2,12 +2,13 @@ package model
 
 type Result struct {
 	Type    string 
-	Value   string
 	Length  int
+	Value   string
+
 }
 
 func NewResult() Result{
-	return Result{"","",0}
+	return Result{"",0,""}
 } 
  
 
