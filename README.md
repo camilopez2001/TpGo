@@ -12,7 +12,4 @@ El test llega a un 89.1% de cobertura.
 
 INTEGRANTES:
 Lopez, Camila.
-
-Cesario Provenzano, Guillermo Tomas.
-
-Amici, Cristian
+Amici, Cristian.
